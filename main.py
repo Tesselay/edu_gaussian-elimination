@@ -1,15 +1,53 @@
 if __name__ == "__main__":
-    example_points = [[0/5], [3/2], [5/10]]
 
-    # f(0) = a*0^2 + b*0 + c = 5
-    # f(3) = a*3^2 + b*3 + c = 2
-    # f(5) = a*5^2 + b*5 + c = 10
+    # EXAMPLE MATRIX
+    # x + y + z = 3
+    # x + 2y + 3z = 0
+    # x + 3y + 4z = -2
 
     matrix = [
-        [example_points[0][0]**2, example_points[0][0], 1],
-        [example_points[1][0]**2, example_points[1][0], 1],
-        [example_points[2][0]**2, example_points[2][0], 1],
-        [example_points[0][0], example_points[1][0], example_points[2][0]]
+        [1, 1, 1, 3],
+        [1, 2, 3, 0],
+        [1, 3, 4, -2]
     ]
+
+    multiplicator = 1 / matrix[0][0]
+    for element in range(len(matrix[0])):
+        matrix[0][element] *= multiplicator
+
+    for element in range(len(matrix[1])):
+        matrix[1][element] = matrix[1][element] - 1 * matrix[0][element]
+
+    for element in range(len(matrix[2])):
+        matrix[2][element] = matrix[2][element] - 1 * matrix[0][element]
+
+
+    for element in range(len(matrix[0])):
+        matrix[0][element] = matrix[0][element] - 1 * matrix[1][element]
+
+    for element in range(len(matrix[2])):
+        matrix[2][element] = matrix[2][element] - 2 * matrix[1][element]
+
+
+    for element in range(len(matrix[2])):
+        matrix[2][element] = matrix[2][element] * -1
+
+
+    for element in range(len(matrix[0])):
+        matrix[0][element] = matrix[0][element] - -1 * matrix[2][element]
+
+    for element in range(len(matrix[1])):
+        matrix[1][element] = matrix[1][element] - 2 * matrix[2][element]
+
+
+
+
+    # multiplicator = 1 / matrix[1][1]
+    # for element in range(len(matrix[1])):
+    #     matrix[1][element] *= multiplicator
+    #
+    # multiplicator = 1 / matrix[2][2]
+    # for element in range(len(matrix[2])):
+    #     matrix[2][element] *= multiplicator
 
     print(matrix)
