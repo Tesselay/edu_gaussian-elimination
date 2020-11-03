@@ -22,6 +22,13 @@ def sign_reverse(matrix, row_num):
     return matrix
 
 
+def swap_rows(matrix, row_pos):
+    matrix[0], matrix[row_pos] = matrix[row_pos], matrix[0]
+
+    return matrix
+
+
+
 if __name__ == "__main__":
 
     # EXAMPLE MATRIX
@@ -34,6 +41,14 @@ if __name__ == "__main__":
         [1, 2, 3, 0],
         [1, 3, 4, -2]
     ]
+
+    correct_row = None
+    for element in range(len(matrix)):
+        if element[0] == 1:
+            correct_row = element
+            break
+    if correct_row is not None:
+        swap_rows(matrix, correct_row)
 
     matrix = to_one(matrix)
 
