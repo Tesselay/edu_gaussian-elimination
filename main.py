@@ -44,11 +44,27 @@ if __name__ == "__main__":
 
     correct_row = None
     for element in range(len(matrix)):
-        if element[0] == 1:
+        if matrix[element][0] == 1:
             correct_row = element
             break
     if correct_row is not None:
         swap_rows(matrix, correct_row)
+
+    # correct_row = None
+    # for element in range(len(matrix)):
+    #     if element[0] == 1:
+    #         correct_row = element
+    #         break
+    # if correct_row is not None:
+    #     swap_rows(matrix, correct_row)
+    #
+    # correct_row = None
+    # for element in range(len(matrix)):
+    #     if element[0] == 1:
+    #         correct_row = element
+    #         break
+    # if correct_row is not None:
+    #     swap_rows(matrix, correct_row)
 
     matrix = to_one(matrix)
 
