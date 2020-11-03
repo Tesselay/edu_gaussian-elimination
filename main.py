@@ -22,10 +22,10 @@ def sign_reverse(matrix, row_num):
     return matrix
 
 
-def swap_rows(matrix, row_pos):
-    matrix[0], matrix[row_pos] = matrix[row_pos], matrix[0]
+def swap_elements(list, pos_1, pos_2):
+    list[pos_1], list[pos_2] = list[pos_2], list[pos_1]
 
-    return matrix
+    return list
 
 
 
@@ -48,23 +48,25 @@ if __name__ == "__main__":
             correct_row = element
             break
     if correct_row is not None:
-        swap_rows(matrix, correct_row)
+        swap_elements(matrix, 0, correct_row)
 
-    # correct_row = None
-    # for element in range(len(matrix)):
-    #     if element[0] == 1:
-    #         correct_row = element
-    #         break
-    # if correct_row is not None:
-    #     swap_rows(matrix, correct_row)
-    #
-    # correct_row = None
-    # for element in range(len(matrix)):
-    #     if element[0] == 1:
-    #         correct_row = element
-    #         break
-    # if correct_row is not None:
-    #     swap_rows(matrix, correct_row)
+    correct_row = None
+    for element in range(len(matrix)):
+        if matrix[element][1] == 1:
+            correct_row = element
+            break
+    if correct_row is not None:
+        swap_elements(matrix, 1, correct_row)
+
+    correct_row = None
+    for element in range(len(matrix)):
+        if matrix[element][2] == 1:
+            correct_row = element
+            break
+    if correct_row is not None:
+        swap_elements(matrix, 2, correct_row)
+
+    print(matrix)
 
     matrix = to_one(matrix)
 
