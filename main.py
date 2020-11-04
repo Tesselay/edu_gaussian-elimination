@@ -48,35 +48,12 @@ if __name__ == "__main__":
     # x + 3y + 4z = -2
 
     matrix = [
-        [1, 1, 1, 3],
+        [1, 2, 1, 3],
         [2, 2, 3, 0],
         [1, 3, 4, -2]
     ]
 
-    # matrix = correct_pos(matrix, 0)
-    # matrix = correct_pos(matrix, 1)
-    # matrix = correct_pos(matrix, 2)
-
     print(matrix)
-
-    # matrix = to_one(matrix, 0, 0)
-
-    # for element in range(len(matrix)):
-    #     if matrix[element][element] == -1:
-    #         for sub_element in range(len(matrix[element])):
-    #             matrix[element][sub_element] *= -1
-    #
-    #     if matrix[element][element] != 1:
-    #         try:
-    #             matrix = to_one(matrix, element, element)
-    #         except ZeroDivisionError as e:
-    #             pass
-    #
-    #     try:
-    #         matrix = nullify_column(matrix, element+1, element)
-    #     except IndexError as e:
-    #         matrix = nullify_column(matrix, 0, element)
-    #     matrix = nullify_column(matrix, element-1, element)
 
     for element in range(len(matrix)):
         if matrix[element][element] != 1:
@@ -85,53 +62,27 @@ if __name__ == "__main__":
             except ZeroDivisionError as e:
                 pass
 
-    # iterator = 0
-    # for element in range(len(matrix)):
-    #     if matrix[element][element] == -1:
-    #         for sub_element in range(len(matrix[element])):
-    #             matrix[element][sub_element] *= -1
-    #
-    #     try:
-    #         matrix = nullify_column(matrix, element+1, element)
-    #     except IndexError as e:
-    #         matrix = nullify_column(matrix, 0, element)
-    #     matrix = nullify_column(matrix, element-1, element)
-    #
-    #     if matrix[element][element] != 1:
-    #         try:
-    #             matrix = to_one(matrix, element, element)
-    #         except ZeroDivisionError as e:
-    #             pass
+    if matrix[1][1] == matrix[1][0] and matrix[1][1] == matrix[0][1]:
+        matrix = swap_elements(matrix, 1, 2)
 
+    for element in range(len(matrix)):
+        if matrix[element][element] == -1:
+            for sub_element in range(len(matrix[element])):
+                matrix[element][sub_element] *= -1
 
-    iterator = 0
-    iteratorB = 0
-    while True:
-        if matrix[iterator][iterator] == -1:
-            for sub_element in range(len(matrix[iterator])):
-                matrix[iterator][sub_element] *= -1
+        # if matrix[element+1][element+1] == matrix[element+1][element] and matrix[element+1][element+1] == matrix[element][element+1]:
+        #     matrix = swap_elements(matrix, element+1, element-1)
 
-        try:
-            matrix = nullify_column(matrix, iterator+1, iterator)
-        except IndexError as e:
-            matrix = nullify_column(matrix, 0, iterator)
-        matrix = nullify_column(matrix, iterator-1, iterator)
-
-        if matrix[iterator][iterator] != 1:
+        if matrix[element][element] != 1:
             try:
-                matrix = to_one(matrix, iterator, iterator)
+                matrix = to_one(matrix, element, element)
             except ZeroDivisionError as e:
                 pass
 
-        iterator += 1
-        iteratorB += 1
-
-        if iterator == 2:
-            iterator = 0
-
-        if iteratorB == 3000:
-            break
-
-    sum([matrix[0][0], matrix[0][1], matrix[0][2]])
+        try:
+            matrix = nullify_column(matrix, element+1, element)
+        except IndexError as e:
+            matrix = nullify_column(matrix, 0, element)
+        matrix = nullify_column(matrix, element-1, element)
 
     print(matrix)
