@@ -59,18 +59,79 @@ if __name__ == "__main__":
 
     print(matrix)
 
-    matrix = to_one(matrix, 0, 0)
+    # matrix = to_one(matrix, 0, 0)
+
+    # for element in range(len(matrix)):
+    #     if matrix[element][element] == -1:
+    #         for sub_element in range(len(matrix[element])):
+    #             matrix[element][sub_element] *= -1
+    #
+    #     if matrix[element][element] != 1:
+    #         try:
+    #             matrix = to_one(matrix, element, element)
+    #         except ZeroDivisionError as e:
+    #             pass
+    #
+    #     try:
+    #         matrix = nullify_column(matrix, element+1, element)
+    #     except IndexError as e:
+    #         matrix = nullify_column(matrix, 0, element)
+    #     matrix = nullify_column(matrix, element-1, element)
 
     for element in range(len(matrix)):
-        if matrix[element][element] == -1:
-            for sub_element in range(len(matrix[element])):
-                matrix[element][sub_element] *= -1
         if matrix[element][element] != 1:
-            matrix = to_one(matrix, element, element)
+            try:
+                matrix = to_one(matrix, element, element)
+            except ZeroDivisionError as e:
+                pass
+
+    # iterator = 0
+    # for element in range(len(matrix)):
+    #     if matrix[element][element] == -1:
+    #         for sub_element in range(len(matrix[element])):
+    #             matrix[element][sub_element] *= -1
+    #
+    #     try:
+    #         matrix = nullify_column(matrix, element+1, element)
+    #     except IndexError as e:
+    #         matrix = nullify_column(matrix, 0, element)
+    #     matrix = nullify_column(matrix, element-1, element)
+    #
+    #     if matrix[element][element] != 1:
+    #         try:
+    #             matrix = to_one(matrix, element, element)
+    #         except ZeroDivisionError as e:
+    #             pass
+
+
+    iterator = 0
+    iteratorB = 0
+    while True:
+        if matrix[iterator][iterator] == -1:
+            for sub_element in range(len(matrix[iterator])):
+                matrix[iterator][sub_element] *= -1
+
         try:
-            matrix = nullify_column(matrix, element+1, element)
+            matrix = nullify_column(matrix, iterator+1, iterator)
         except IndexError as e:
-            matrix = nullify_column(matrix, 0, element)
-        matrix = nullify_column(matrix, element-1, element)
+            matrix = nullify_column(matrix, 0, iterator)
+        matrix = nullify_column(matrix, iterator-1, iterator)
+
+        if matrix[iterator][iterator] != 1:
+            try:
+                matrix = to_one(matrix, iterator, iterator)
+            except ZeroDivisionError as e:
+                pass
+
+        iterator += 1
+        iteratorB += 1
+
+        if iterator == 2:
+            iterator = 0
+
+        if iteratorB == 3000:
+            break
+
+    sum([matrix[0][0], matrix[0][1], matrix[0][2]])
 
     print(matrix)
